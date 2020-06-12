@@ -4,10 +4,14 @@ GameController::GameController()
 {
 	player = new Tank;
 	player->cannon = new Cannon;
+	powerUp = new PowerUp();
 }
 
 GameController::~GameController()
 {
+	delete powerUp;
+	powerUp = NULL;
+
 	delete player->cannon;
 	player->cannon = NULL;
 

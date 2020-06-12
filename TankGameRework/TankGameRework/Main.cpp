@@ -12,6 +12,7 @@ using namespace std;
 #include "Draw.h"
 #include "Transform.h"
 #include "Tank.h"
+#include "PowerUp.h"
 
 // Global variables
 
@@ -45,6 +46,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
 {
 	GameController *gameController = new GameController;
+	gameController->powerUp->RandomNumber();
 
 #pragma region Window/OpenGL initialization
 
@@ -162,10 +164,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Update Game
-		update.UpdateGame(gameController->player);
+		update.UpdateGame(gameController);
 		gameController->ScreenWrap();
 		// Draw Game
-		draw.DrawGame(gameController->player);
+		draw.DrawGame(gameController);
 
 		SwapBuffers(hDeviceContext);
 	}

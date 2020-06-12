@@ -20,6 +20,16 @@ float Draw::cannonVert[18] = {
 	0.1f, 0.05f, 0.0f
 };
 
+// PowerUp
+float Draw::powerUpVert[18] = {
+	-0.05f, -0.05f, 0.0f,
+	0.05f, -0.05f, 0.0f,
+	-0.05f, 0.05f, 0.0f,
+	-0.05f, 0.05f, 0.0f,
+	0.05f, -0.05f, 0.0f,
+	0.05f, 0.05f, 0.0f
+};
+
 // Red
 float Draw::tankColour[24] = {
 	1.0f, 0.0f, 0.0f, 1.0f,
@@ -40,7 +50,17 @@ float Draw::cannonColour[24] = {
 	1.0f, 1.0f, 1.0f, 1.0f
 };
 
-void Draw::DrawGame(Tank *player)
+// Black
+float Draw::powerUpColour[24] = {
+	0.0f, 0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 0.0f, 1.0f,
+	0.0f, 0.0f, 0.0f, 1.0f
+};
+
+void Draw::DrawGame(GameController *controller)
 {
 	// Open the vertex/colour array states to be thrown at OpenGL
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -53,8 +73,8 @@ void Draw::DrawGame(Tank *player)
 	// 4 colour options - r,g,b,a
 	glColorPointer(4, GL_FLOAT, 0, tankColour);
 	glLoadIdentity();
-	glTranslatef(player->position.x, player->position.y, -5.0f);
-	glRotatef(player->rotation.z, 0.0f, 0.0f, 1.0f);
+	glTranslatef(controller->player->position.x, controller->player->position.y, -5.0f);
+	glRotatef(controller->player->rotation.z, 0.0f, 0.0f, 1.0f);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	// This is needed to draw each object
@@ -65,11 +85,20 @@ void Draw::DrawGame(Tank *player)
 	glVertexPointer(3, GL_FLOAT, 0, cannonVert);
 	glColorPointer(4, GL_FLOAT, 0, cannonColour);
 	glLoadIdentity();
-	glTranslatef(player->position.x, player->position.y, -5.0f);
-	glRotatef(player->cannon->rotation.z, 0.0f, 0.0f, 1.0f);
+	glTranslatef(controller->player->position.x, controller->player->position.y, -5.0f);
+	glRotatef(controller->player->cannon->rotation.z, 0.0f, 0.0f, 1.0f);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	//
 	////////////////////////////////////////////////////////////////////////////////////
+
+	// Power Ups
+	glMatrixMode(GL_MODELVIEW);
+	glVertexPointer(3, GL_FLOAT, 0, powerUpVert);
+	glColorPointer(4, GL_FLOAT, 0, powerUpColour);
+	glLoadIdentity();
+	glTranslatef(controller->powerUp->position.x, controller->powerUp->position.y, -5.0f);
+	glRotatef(controller->powerUp->rotation.z, 0.0f, 0.0f, 1.0f);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);

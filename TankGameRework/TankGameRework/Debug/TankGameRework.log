@@ -1,1 +1,5 @@
-﻿  TankGameRework.vcxproj -> E:\Game Development\GitHub Projects\TankGameRework\TankGameRework\Debug\TankGameRework.exe
+﻿  PowerUp.cpp
+e:\game development\github projects\tankgamerework\tankgamerework\tankgamerework\powerup.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+e:\game development\github projects\tankgamerework\tankgamerework\tankgamerework\powerup.cpp(7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\game development\github projects\tankgamerework\tankgamerework\tankgamerework\powerup.cpp(8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  TankGameRework.vcxproj -> E:\Game Development\GitHub Projects\TankGameRework\TankGameRework\Debug\TankGameRework.exe

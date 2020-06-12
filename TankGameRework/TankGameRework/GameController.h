@@ -1,10 +1,12 @@
 #pragma once
 #include "Tank.h"
+#include "PowerUp.h"
 
 class GameController
 {
 public:
 	Tank *player;
+	PowerUp *powerUp;
 
 	float xScreen, yScreen;
 

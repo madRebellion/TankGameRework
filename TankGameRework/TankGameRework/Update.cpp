@@ -1,8 +1,8 @@
 #include "Update.h"
 
-void Update::UpdateGame(Tank *player)
+void Update::UpdateGame(GameController *controller)
 {
-	InputController(player);
+	InputController(controller);
 
 	/*if (player->tankSpeed != 0.0f)
 	{
@@ -11,11 +11,11 @@ void Update::UpdateGame(Tank *player)
 	player->Rotate();
 	player->cannon->Rotate();*/
 
-	player->CalculateMovement();
+	controller->player->CalculateMovement();
 }
 
 // Handles player inputs and OS messages
-void Update::InputController(Tank *player)
+void Update::InputController(GameController *controller)
 {
 	if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
@@ -35,22 +35,22 @@ void Update::InputController(Tank *player)
 				playing = false;
 				break;
 			case 'W':
-				player->tankSpeed = 0.01f;
+				controller->player->tankSpeed = 0.01f;
 				break;
 			case 'S':
-				player->tankSpeed = -0.005f;
+				controller->player->tankSpeed = -0.005f;
 				break;
 			case 'A':
-				player->rotateRight = true;
+				controller->player->rotateRight = true;
 				break;
 			case 'D':
-				player->rotateLeft = true;
+				controller->player->rotateLeft = true;
 				break;
 			case 'Q':
-				player->cannon->rotateRight = true;
+				controller->player->cannon->rotateRight = true;
 				break;
 			case 'E':
-				player->cannon->rotateLeft = true;
+				controller->player->cannon->rotateLeft = true;
 				break;
 			default:
 				break;
@@ -64,22 +64,22 @@ void Update::InputController(Tank *player)
 			switch (msg.wParam)
 			{
 			case 'W':
-				player->tankSpeed = 0.0f;
+				controller->player->tankSpeed = 0.0f;
 				break;
 			case 'S':
-				player->tankSpeed = 0.0f;
+				controller->player->tankSpeed = 0.0f;
 				break;
 			case 'A':
-				player->rotateRight = false;
+				controller->player->rotateRight = false;
 				break;
 			case 'D':
-				player->rotateLeft = false;
+				controller->player->rotateLeft = false;
 				break;
 			case 'Q':
-				player->cannon->rotateRight = false;
+				controller->player->cannon->rotateRight = false;
 				break;
 			case 'E':
-				player->cannon->rotateLeft = false;
+				controller->player->cannon->rotateLeft = false;
 				break;
 			}
 		}

@@ -9,6 +9,6 @@ struct Update
 
 	bool playing = true;
 
-	void UpdateGame(Tank *player);
-	void InputController(Tank *player);
+	void UpdateGame(GameController *controller);
+	void InputController(GameController *controller);
 };
